@@ -62,13 +62,14 @@ public class App
                     // slide 9 - receive message
                     msgReceived = dis.readUTF();
 
-                    if(msgReceived.equals("get-cookie")) {
+                    if(msgReceived.equalsIgnoreCase("get-cookie")) {
                         
                         // get a random cookie
                         String randomCookie = cookie.getRandomCookie();
 
                         // send the random cookie out using dataOutputStream (dos.writeUTF(XXXXX)))
                         dos.writeUTF(randomCookie);
+                        dos.flush();
                     }
 
                 }
@@ -87,7 +88,7 @@ public class App
             bis.close();
             is.close();
         } catch (EOFException ex) {
-            socket.close();
+            socket.close(); 
             ss.close();
 
         }
